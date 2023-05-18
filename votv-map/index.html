@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VotV Map</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="display_image_container" class="unselectable hidden" onclick="hidePreview()">
+        <img id="display_image"></div>
+    </div>
+    <div id="container">
+        <div id="page_container" class="flex_box">
+            <div id="map_pane" class="col unselectable" oncontextmenu="return false;">
+                <div id="map_container" style="left: 5px; top: 5px;">
+                    <img id="map_image" src="./map.png"/>
+                </div>
+            </div>
+            <div id="information_pane" class="col">
+                <div id="information_pane_body">
+                    <h1 id="information_header">Select a Point</h1>
+                    <p id="information_coords"></p>
+                    <p id="information_text">Click on a point on the map to see some information about what it is and where it's located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.</p>
+                    <div id="information_images"></div>
+                </div>
+                <div id="information_pane_footer">
+                    <div>Check me out on:</div>
+                    <div>G: https://github.com/Questwalker</div>
+                    <br>
+                    <div>Contact me at:</div>
+                    <div>D: Questwalker#5433</div>
+                    <div>E: questwalkerko@gmail.com</div>
+                    <br>
+                    <div onclick="centerMap()" style="cursor: default"><u>[Click here]</u> to center the map.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
