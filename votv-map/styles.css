@@ -26,9 +26,10 @@ body {
 }
 
 #information_pane {
-    border-top: 1px solid green;
+    /* border-top: 1px solid green;
     border-right: 1px solid green;
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid green; */
+    border: 1px solid green;
     flex: 0.2;
     padding: 12px;
 }
@@ -88,6 +89,7 @@ body {
 
 #information_pane_footer {
     border-top: 1px solid green;
+    overflow: auto;
     margin-top: 6px;
     padding-top: 6px;
 }
@@ -123,3 +125,27 @@ body {
     background-color: black;
 }
 
+@media (max-width: 850px) {
+    #page_container {
+        flex-flow: column;
+    }
+    #credits {
+        display: none;
+    }
+    #map_pane {
+        flex: 0.7;
+    }
+    #information_pane {
+        flex: 0.3;
+    }
+    #information_images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .information_image {
+        width: 33%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

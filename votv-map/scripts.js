@@ -247,7 +247,7 @@ const points = [
     {
         "name": "Metal Tile #3",
         "description": "This is, by far, the hardest tile to find. If you don't have a digital map, I recommend you: <br><br>1. go to quebec.<br>2. reset your compass with <i>sv.target reset</i>.<br>3. go below quebec and orient yourself to what is seen in the first image below.<br>4. walk forward until you are around halfway inbetween quebec and sierra. you should find yourself in a clearing similar to what is seen in image 2, 3, and 4 (note the 3 trees next to eachother).<br>5. continue searching in that area until you find the key.",
-        "related_images" : ['./images/tile3_1.png', './images/tile3_2.png', './images/tile3_3.png', './images/tile3_4.png'],
+        "related_images" : ['./images/tile3_1.png', './images/tile3_2.png', './images/tile3_3.png', './images/tile3_4.png', './images/tile3_4.png', './images/tile3_4.png'],
         "icon": "./icons/metal_tile.png",
         "positioning": "positioned_above",
         "xPos": -464,
@@ -309,7 +309,7 @@ const points = [
     }
 ]
 var map_container = document.getElementById('map_container');
-var information_pane_body = document.getElementById('information_pane_body');
+var information_pane = document.getElementById('information_pane');
 var information_header = document.getElementById('information_header');
 var information_coords = document.getElementById('information_coords');
 var information_text = document.getElementById('information_text');
@@ -358,6 +358,7 @@ function pointClicked() {
     information_coords.innerHTML = `x: <u>${data.xPos}</u>, y: <u>${data.yPos}</u>`
     information_text.innerHTML = data.description
     information_images.replaceChildren()
+    information_pane.classList.add('showing_information')
 
     if (data.related_images.length) {
         data.related_images.forEach((link, imageindex) => {
@@ -375,6 +376,7 @@ function pointClicked() {
 
 // map panning functionality
 map_container.addEventListener('mousedown', function(e) {
+    console.log('mousedown')
     if (!drag.state && e.button == 0) {
         // cancel drag if the mouse is hovering over a point
         let hovering = true
@@ -382,7 +384,6 @@ map_container.addEventListener('mousedown', function(e) {
             if (element.matches(":hover")) hovering = false;
         });
         if (!hovering) return false;
-
         map_container.classList.add('unselectable');
         drag.x = e.pageX;
         drag.y = e.pageY;
@@ -391,8 +392,26 @@ map_container.addEventListener('mousedown', function(e) {
     }
     return false;
 });
+map_container.addEventListener('touchstart', function(e) {
+    console.log('touchstart')
+    if (!drag.state && e.touches.length == 1) {
+        // cancel drag if the mouse is hovering over a point
+        let hovering = true
+        document.querySelectorAll('.image_label').forEach(function(element) {
+            if (element.matches(":hover")) hovering = false;
+        });
+        if (!hovering) return false;
+        map_container.classList.add('unselectable');
+        drag.x = e.touches[0].pageX;
+        drag.y = e.touches[0].pageY;
+        drag.state = true;
+        clickedWithoutMovement = true;
+    }
+    return false;
+});
 
 document.addEventListener('mousemove', function(e) {
+    console.log('mousemove')
     if (drag.state) {
         map_container.style.left = parseInt(map_container.style.left, 10) + (e.pageX - drag.x) + 'px';
         map_container.style.top = parseInt(map_container.style.top, 10) + (e.pageY - drag.y) + 'px';
@@ -401,8 +420,20 @@ document.addEventListener('mousemove', function(e) {
         clickedWithoutMovement = false;
     }
 });
+document.addEventListener('touchmove', function(e) {
+    console.log('touchmove')
+    if (drag.state) {
+        console.log('mouse move')
+        map_container.style.left = parseInt(map_container.style.left, 10) + (e.touches[0].pageX - drag.x) + 'px';
+        map_container.style.top = parseInt(map_container.style.top, 10) + (e.touches[0].pageY - drag.y) + 'px';
+        drag.x = e.touches[0].pageX;
+        drag.y = e.touches[0].pageY;
+        clickedWithoutMovement = false;
+    }
+});
 
 document.addEventListener('mouseup', function(e) {
+    console.log('mouseup')
     if (drag.state) {
         drag.state = false;
         if (clickedWithoutMovement) {
@@ -410,6 +441,21 @@ document.addEventListener('mouseup', function(e) {
             information_coords.innerHTML = ''
             information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
             information_images.replaceChildren()
+            information_pane.classList.remove('showing_information')
+        }
+    }
+    map_container.classList.remove('unselectable');
+});
+document.addEventListener('touchend', function(e) {
+    console.log('touchend')
+    if (drag.state) {
+        drag.state = false;
+        if (clickedWithoutMovement) {
+            information_header.innerHTML = 'Select a Point'
+            information_coords.innerHTML = ''
+            information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
+            information_images.replaceChildren()
+            information_pane.classList.remove('showing_information')
         }
     }
     map_container.classList.remove('unselectable');
