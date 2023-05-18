@@ -376,7 +376,6 @@ function pointClicked() {
 
 // map panning functionality
 map_container.addEventListener('mousedown', function(e) {
-    console.log('mousedown')
     if (!drag.state && e.button == 0) {
         // cancel drag if the mouse is hovering over a point
         let hovering = true
@@ -393,7 +392,6 @@ map_container.addEventListener('mousedown', function(e) {
     return false;
 });
 map_container.addEventListener('touchstart', function(e) {
-    console.log('touchstart')
     if (!drag.state && e.touches.length == 1) {
         // cancel drag if the mouse is hovering over a point
         let hovering = true
@@ -411,7 +409,6 @@ map_container.addEventListener('touchstart', function(e) {
 });
 
 document.addEventListener('mousemove', function(e) {
-    console.log('mousemove')
     if (drag.state) {
         map_container.style.left = parseInt(map_container.style.left, 10) + (e.pageX - drag.x) + 'px';
         map_container.style.top = parseInt(map_container.style.top, 10) + (e.pageY - drag.y) + 'px';
@@ -421,9 +418,7 @@ document.addEventListener('mousemove', function(e) {
     }
 });
 document.addEventListener('touchmove', function(e) {
-    console.log('touchmove')
     if (drag.state) {
-        console.log('mouse move')
         map_container.style.left = parseInt(map_container.style.left, 10) + (e.touches[0].pageX - drag.x) + 'px';
         map_container.style.top = parseInt(map_container.style.top, 10) + (e.touches[0].pageY - drag.y) + 'px';
         drag.x = e.touches[0].pageX;
@@ -433,7 +428,6 @@ document.addEventListener('touchmove', function(e) {
 });
 
 document.addEventListener('mouseup', function(e) {
-    console.log('mouseup')
     if (drag.state) {
         drag.state = false;
         if (clickedWithoutMovement) {
@@ -447,7 +441,6 @@ document.addEventListener('mouseup', function(e) {
     map_container.classList.remove('unselectable');
 });
 document.addEventListener('touchend', function(e) {
-    console.log('touchend')
     if (drag.state) {
         drag.state = false;
         if (clickedWithoutMovement) {
