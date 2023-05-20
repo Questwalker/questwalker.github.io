@@ -19,23 +19,31 @@
 </head>
 <body>
 <div>
-5/15/2023: Development on VOTV map started (slowly)<br><br>
+<noscript><u>Hello! This page is full functional with no-script, but feel free to enable it if you need to better understand the dates listed below. Additionally, all CSS and JS are all contained in this one page, so feel free to audit it yourself.</u><br><br></noscript>
 
-5/18/2023 1684441938046 (minus ~32 minutes): VOTV Map became public on github.io<br><br>
+<span class="time">5/15/2023 1684130400000</span>: Development on VOTV map started (slowly)<br><br>
 
-5/18/2023 1684453321842: Some updates to improve mobile and small sized screens.<br><br>
+<span class="time">5/18/2023 1684440018046</span>: VOTV map became public on github.io<br><br>
 
-5/19/2023 1684562278630: (Hopefully) An improvement to the map panning system, which should also fix some bugs with mobile/touchscreen<br><br>
+<span class="time">5/18/2023 1684453321842</span>: Some updates to introduce touchscreen functionality and to better accommodate small sized screens.<br><br>
+
+<span class="time">5/19/2023 1684562278630</span>: (Hopefully) An improvement to the map panning system, which should also fix some bugs with mobile/touchscreen.<br><br>
+
+<span class="time">5/20/2023 1684567356574</span>: Small css tweak and added some functionality to the changelog.<br><br>
 
 Features/bugs to add/fix:<br>
  > Add a favicon?<br>
  > Map scaling; Map zoom in & out with pinching or scrolling<br>
  > Add a canvas to the map to allow drawing of lines. Hopefully to allow drawing the fences and various other lines<br>
  > Somehow get a orthographic picture of the map to use instead of the current grayscale one.<br>
- > Additional changelog functionaliy if javascript is enabled (timezone conversion?)
+ > Add functionality to changelog to turn unix time into local HOURS:MINUTES (DONE)
 </div>
 <script>
-    console.log('hello world')
+    Array.from(document.getElementsByClassName('time')).forEach(element => {
+        let datetime = new Date(parseInt(element.innerHTML.split(' ')[1]))
+        let timezoneCode = datetime.toLocaleTimeString(undefined, {timeZoneName: 'short'}).split(' ')[2]
+        element.innerHTML = `${datetime.getMonth()+1}/${datetime.getDate()}/${datetime.getFullYear()} ${datetime.getHours().toString().padStart(2, '0')}:${datetime.getMinutes().toString().padStart(2, '0')}` // ''
+    });
 </script>
 </body>
 </html>
