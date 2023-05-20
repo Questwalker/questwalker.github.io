@@ -324,6 +324,7 @@ function centerMap() {
     map_container.style.top = Math.floor((map_pane.offsetHeight - map_image.offsetHeight) / 2).toString() + 'px'
 };
 
+var touchedPoint = false;
 var currentSize = 896;
 var clickedWithoutMovement = false;
 var drag = {
@@ -344,106 +345,116 @@ points.forEach((data, pointindex) => {
     element.style.left = (((data.xPos+745)/1490)*currentSize).toString()+'px';
     element.style.top = (((data.yPos+745)/1490)*currentSize).toString()+'px';
     element.dataset.pointindex = pointindex
-    element.ondragstart = () => {return false;}
-    element.addEventListener('click', pointClicked, false)
+    element.ondragstart = () => { return false; }
     element.src = data.icon
     map_container.appendChild(element)
 })
 
-
-// point click functionality
-function pointClicked() {
-    let data = points[this.dataset.pointindex]
-    information_header.innerHTML = data.name
-    information_coords.innerHTML = `x: <u>${data.xPos}</u>, y: <u>${data.yPos}</u>`
-    information_text.innerHTML = data.description
-    information_images.replaceChildren()
-    information_pane.classList.add('showing_information')
-
-    if (data.related_images.length) {
-        data.related_images.forEach((link, imageindex) => {
-            let element = document.createElement('img');
-            element.src = link;
-            element.onclick = function() { previewImage(this) };          // add functionality to left and right arrow to switch to previous and next images
-            element.classList.add('information_image');
-            element.dataset.pointindex = this.dataset.pointindex
-            element.dataset.imageindex = imageindex
-            information_images.appendChild(element);
-        });
-    };
-}
-
-
-// map panning functionality
-map_container.addEventListener('mousedown', function(e) {
-    if (!drag.state && e.button == 0) {
-        // cancel drag if the mouse is hovering over a point
-        let hovering = true
-        document.querySelectorAll('.image_label').forEach(function(element) {
-            if (element.matches(":hover")) hovering = false;
-        });
-        if (!hovering) return false;
-        map_container.classList.add('unselectable');
-        drag.x = e.pageX;
-        drag.y = e.pageY;
-        drag.state = true;
-        clickedWithoutMovement = true;
+map_container.addEventListener('mousedown', function(event) {
+    clickedWithoutMovement = true
+    if (event.target == map_container) {
+        console.log('mousedown on map')
+        if (!drag.state && event.button == 0) {
+            map_container.classList.add('unselectable')
+            drag.x = event.pageX
+            drag.y = event.pageY
+            drag.state = true
+        }
+    } else if (event.target.classList.contains('image_label')) {
+        console.log('mousedown on point')
+    } else {
+        console.log('i don\'t know what you clicked')
     }
-    return false;
 });
-map_container.addEventListener('touchstart', function(e) {
-    if (!drag.state && e.touches.length == 1) {
-        // cancel drag if the mouse is hovering over a point
-        let hovering = true
-        document.querySelectorAll('.image_label').forEach(function(element) {
-            if (element.matches(":hover")) hovering = false;
-        });
-        if (!hovering) return false;
-        map_container.classList.add('unselectable');
-        drag.x = e.touches[0].pageX;
-        drag.y = e.touches[0].pageY;
-        drag.state = true;
-        clickedWithoutMovement = true;
+map_container.addEventListener('touchstart', function(event) {
+    clickedWithoutMovement = true
+    if (event.target == map_container) {
+        console.log('touchdown on map')
+        if (!drag.state && event.touches.length == 1) {
+            console.log('start moving')
+            map_container.classList.add('unselectable')
+            drag.x = event.touches[0].pageX
+            drag.y = event.touches[0].pageY
+            drag.state = true
+        }
+    } else if (event.target.classList.contains('image_label')) {
+        console.log('touchdown on map')
+        if (!drag.state && event.touches.length == 1) {
+            console.log('start moving')
+            map_container.classList.add('unselectable')
+            drag.x = event.touches[0].pageX
+            drag.y = event.touches[0].pageY
+            drag.state = true
+        }
+    } else {
+        console.log('i don\'t know what you touched')
     }
-    return false;
 });
-
-document.addEventListener('mousemove', function(e) {
+document.addEventListener('mousemove', function(event) {
+    clickedWithoutMovement = false
     if (drag.state) {
-        map_container.style.left = parseInt(map_container.style.left, 10) + (e.pageX - drag.x) + 'px';
-        map_container.style.top = parseInt(map_container.style.top, 10) + (e.pageY - drag.y) + 'px';
-        drag.x = e.pageX;
-        drag.y = e.pageY;
-        clickedWithoutMovement = false;
+        // console.log('mouse MOVE')
+        map_container.style.left = parseInt(map_container.style.left, 10) + (event.pageX - drag.x) + 'px'
+        map_container.style.top = parseInt(map_container.style.top, 10) + (event.pageY - drag.y) + 'px'
+        drag.x = event.pageX
+        drag.y = event.pageY
+        clickedWithoutMovement = false
     }
 });
-document.addEventListener('touchmove', function(e) {
+document.addEventListener('touchmove', function(event) {
+    clickedWithoutMovement = false
     if (drag.state) {
-        map_container.style.left = parseInt(map_container.style.left, 10) + (e.touches[0].pageX - drag.x) + 'px';
-        map_container.style.top = parseInt(map_container.style.top, 10) + (e.touches[0].pageY - drag.y) + 'px';
-        drag.x = e.touches[0].pageX;
-        drag.y = e.touches[0].pageY;
-        clickedWithoutMovement = false;
+        // console.log('touch MOVE')
+        map_container.style.left = parseInt(map_container.style.left, 10) + (event.touches[0].pageX - drag.x) + 'px';
+        map_container.style.top = parseInt(map_container.style.top, 10) + (event.touches[0].pageY - drag.y) + 'px';
+        drag.x = event.touches[0].pageX;
+        drag.y = event.touches[0].pageY;
+        clickedWithoutMovement = false
     }
 });
-
-document.addEventListener('mouseup', function(e) {
+document.addEventListener('mouseup', function(event) {
+    console.log('up')
     if (drag.state) {
+        console.log('stop dragging')
         drag.state = false;
+        touchedPoint = false;
         if (clickedWithoutMovement) {
+            console.log('clear information pane (mouse)')
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
             information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
             information_images.replaceChildren()
             information_pane.classList.remove('showing_information')
         }
+    } else if (clickedWithoutMovement) {
+        let data = points[event.target.dataset.pointindex]
+        information_header.innerHTML = data.name
+        information_coords.innerHTML = `x: <u>${data.xPos}</u>, y: <u>${data.yPos}</u>`
+        information_text.innerHTML = data.description
+        information_images.replaceChildren()
+        information_pane.classList.add('showing_information')
+    
+        if (data.related_images.length) {
+            data.related_images.forEach((link, imageindex) => {
+                let element = document.createElement('img');
+                element.src = link;
+                element.onclick = function() { previewImage(element) };
+                element.classList.add('information_image');
+                element.dataset.pointindex = event.target.dataset.pointindex
+                element.dataset.imageindex = imageindex
+                information_images.appendChild(element);
+            });
+        };
     }
     map_container.classList.remove('unselectable');
 });
 document.addEventListener('touchend', function(e) {
     if (drag.state) {
+        console.log('stop dragging (touch)')
         drag.state = false;
+        touchedPoint = false;
         if (clickedWithoutMovement) {
+            console.log('clear information pane (mouse)')
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
             information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
@@ -451,7 +462,6 @@ document.addEventListener('touchend', function(e) {
             information_pane.classList.remove('showing_information')
         }
     }
-    map_container.classList.remove('unselectable');
 });
 
 
