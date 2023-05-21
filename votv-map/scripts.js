@@ -5,8 +5,8 @@ const points = [
     //     "related_images" : [],
     //     "icon": "./icons/debug.png",
     //     "positioning": "poitioned_on_top",
-    //     "xPos": -745,
-    //     "yPos": -745
+    //     "xPos": -630,
+    //     "yPos": 190
     // },
     // satellites
     {
@@ -335,6 +335,33 @@ const points = [
         "xPos": -315,
         "yPos": 398
     },
+    {
+        "name": "Glowing Blue Argemia",
+        "description": "Found atop a white cube in the sky. You can get it by either knocking it off with a drone, or going to it yourself using a flying machine glitch. The plushie is stuck firmly to the cube, so knocking it off by drone will take multiple attempts and you may lose it when it falls. You can check out different flying machine designs on the <a href=\"https://discord.gg/WKBvqu4tjV\" target=\"_blank\" rel=\"noopener noreferrer\">discord</a>.",
+        "related_images" : ['./images/glowingBlueArgemia_1.png', './images/glowingBlueArgemia_2.png', './images/glowingBlueArgemia_3.png'],
+        "icon": "./icons/glowing_blue_argemia.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 872,
+        "yPos": -792
+    },
+    {
+        "name": "Glowing Cyan Argemia",
+        "description": "Needs to be dug up using a shovel. You can use a metal detector if you're having any trouble finding it, but it probably won't be nessessary. Be careful to not let the plushie roll down the hill.",
+        "related_images" : ['./images/glowingCyanArgemia_1.png', './images/glowingCyanArgemia_2.png', './images/glowingCyanArgemia_3.png'],
+        "icon": "./icons/glowing_cyan_argemia.png",
+        "positioning": "poitioned_on_top",
+        "xPos": -630,
+        "yPos": 189.6
+    },
+    {
+        "name": "Glowing Magenta Argemia",
+        "description": "The plush's spawn location is located near the top of the tower. In order for the plush to spawn, something (a piece of trash, a drone, etc.) needs to enter that spawning location's hitbox. The usual method is placing a drone around (34.8, -36.8) and then having the drone fly up. When the plush spawns, it will fall and you may not notice it. I recommend placing a camera down below and constantly flicking to it to see it the plush has spawned. You may need to repeat this method multiple times to get it. Good luck.",
+        "related_images" : ['./images/glowingMagentaArgemia_1.png', './images/glowingMagentaArgemia_2.png'],
+        "icon": "./icons/glowing_magenta_argemia.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 34.8,
+        "yPos": -36.8
+    },
     // Unknown Rozital Technology
     {
         "name": "Unknown Rozital Technology",
@@ -344,7 +371,207 @@ const points = [
         "positioning": "poitioned_on_top",
         "xPos": 637,
         "yPos": 44
-    }
+    },
+    // Antibreather Plush
+    {
+        "name": "Burger",
+        "description": "Appears in the antibreather cave at 3:33am in-game. In order for it to spawn, you must be in the cave when the time passes. The plush won't disappear, but the plush only spawns in once, so don't lose it.",
+        "related_images" : [],
+        "icon": "./icons/antibreather_plush.png",
+        "positioning": "poitioned_on_top",
+        "xPos": -652.7,
+        "yPos": -598.8
+    },
+    // Chicken Burgers
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -8,
+    //     "yPos": 3
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -9,
+    //     "yPos": 9
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -9,
+    //     "yPos": -3
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -10,
+    //     "yPos": -3
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -13,
+    //     "yPos": 6
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -14,
+    //     "yPos": 19
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -6,
+    //     "yPos": 19
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -7,
+    //     "yPos": 13
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -4,
+    //     "yPos": 16
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 6,
+    //     "yPos": 19
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 5,
+    //     "yPos": 10
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -14,
+    //     "yPos": -10
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -62,
+    //     "yPos": 12
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 43,
+    //     "yPos": -12
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 11,
+    //     "yPos": 29
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 3,
+    //     "yPos": 18
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -100,
+    //     "yPos": 203
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -621,
+    //     "yPos": -28
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": -651,
+    //     "yPos": -587
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 639,
+    //     "yPos": 44
+    // },
+    // {
+    //     "name": "Burger",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/burger.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 157,
+    //     "yPos": -584
+    // },
 ]
 var map_container = document.getElementById('map_container');
 var information_pane = document.getElementById('information_pane');
@@ -372,7 +599,7 @@ var drag = {
 };
 
 // ensure that the map centers in the map_pane when the page is loaded
-window.addEventListener('load', centerMap, false);
+// window.addEventListener('load', centerMap, false);
 
 
 // creating the points on the map

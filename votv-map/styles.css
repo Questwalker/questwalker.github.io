@@ -129,6 +129,11 @@ body {
     text-decoration-color: green;
 }
 
+#information_text a {
+    color: green !important;
+    text-decoration-color: green;
+}
+
 @media (max-width: 850px) {
     #page_container {
         flex-flow: column;
