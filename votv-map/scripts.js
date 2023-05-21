@@ -599,7 +599,7 @@ var drag = {
 };
 
 // ensure that the map centers in the map_pane when the page is loaded
-// window.addEventListener('load', centerMap, false);
+window.addEventListener('load', centerMap, false);
 
 
 // creating the points on the map
