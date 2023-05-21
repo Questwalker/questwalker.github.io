@@ -374,9 +374,9 @@ const points = [
     },
     // Antibreather Plush
     {
-        "name": "Burger",
+        "name": "Antibreather Plush",
         "description": "Appears in the antibreather cave at 3:33am in-game. In order for it to spawn, you must be in the cave when the time passes. The plush won't disappear, but the plush only spawns in once, so don't lose it.",
-        "related_images" : [],
+        "related_images" : ['./images/antibreatherPlush_1.png', './images/antibreatherPlush_2.png'],
         "icon": "./icons/antibreather_plush.png",
         "positioning": "poitioned_on_top",
         "xPos": -652.7,
