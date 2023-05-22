@@ -620,6 +620,7 @@ function centerMap() {
 
 var currentSize = 896;
 var clickedWithoutMovement = false;
+var touchscreenClickedAPoint = false;
 var drag = {
     x: 0,
     y: 0,
@@ -676,7 +677,7 @@ map_container.addEventListener('mousedown', function(event) {
     }
 });
 map_container.addEventListener('touchstart', function(event) {
-    clickedWithoutMovement = true
+    clickedWithoutMovement = true;
     if (event.target == map_canvas) {
         if (!drag.state && event.touches.length == 1) {
             map_container.classList.add('unselectable')
@@ -685,6 +686,7 @@ map_container.addEventListener('touchstart', function(event) {
             drag.state = true
         }
     } else if (event.target.classList.contains('image_label')) {
+        touchscreenClickedAPoint = true;
         if (!drag.state && event.touches.length == 1) {
             map_container.classList.add('unselectable')
             drag.x = event.touches[0].pageX
@@ -694,29 +696,27 @@ map_container.addEventListener('touchstart', function(event) {
     }
 });
 document.addEventListener('mousemove', function(event) {
-    clickedWithoutMovement = false
+    clickedWithoutMovement = false;
     if (drag.state) {
-        map_container.style.left = parseInt(map_container.style.left, 10) + (event.pageX - drag.x) + 'px'
-        map_container.style.top = parseInt(map_container.style.top, 10) + (event.pageY - drag.y) + 'px'
-        drag.x = event.pageX
-        drag.y = event.pageY
-        clickedWithoutMovement = false
+        map_container.style.left = parseInt(map_container.style.left, 10) + (event.pageX - drag.x) + 'px';
+        map_container.style.top = parseInt(map_container.style.top, 10) + (event.pageY - drag.y) + 'px';
+        drag.x = event.pageX;
+        drag.y = event.pageY;
     }
 });
 document.addEventListener('touchmove', function(event) {
-    clickedWithoutMovement = false
+    clickedWithoutMovement = false;
     if (drag.state) {
         map_container.style.left = parseInt(map_container.style.left, 10) + (event.touches[0].pageX - drag.x) + 'px';
         map_container.style.top = parseInt(map_container.style.top, 10) + (event.touches[0].pageY - drag.y) + 'px';
         drag.x = event.touches[0].pageX;
         drag.y = event.touches[0].pageY;
-        clickedWithoutMovement = false
     }
 });
 document.addEventListener('mouseup', function(event) {
     if (drag.state) {
         drag.state = false;
-        if (clickedWithoutMovement) {
+        if (clickedWithoutMovement && !touchscreenClickedAPoint) {
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
             information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
@@ -743,11 +743,12 @@ document.addEventListener('mouseup', function(event) {
         };
     }
     map_container.classList.remove('unselectable');
+    touchscreenClickedAPoint = false;
 });
 document.addEventListener('touchend', function(e) {
     if (drag.state) {
         drag.state = false;
-        if (clickedWithoutMovement) {
+        if (clickedWithoutMovement && !touchscreenClickedAPoint) {
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
             information_text.innerHTML = 'Click on a point on the map to see some information about what it is and where it\'s located, along with some additional pictures that can tell you where <i>exactly</i> it is or what it looks like.'
@@ -755,6 +756,7 @@ document.addEventListener('touchend', function(e) {
             information_pane.classList.remove('showing_information')
         }
     }
+    touchscreenClickedAPoint = false;
 });
 
 
