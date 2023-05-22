@@ -5,8 +5,17 @@ const points = [
     //     "related_images" : [],
     //     "icon": "./icons/debug.png",
     //     "positioning": "poitioned_on_top",
-    //     "xPos": -630,
-    //     "yPos": 190
+    //     "xPos": -351.4,
+    //     "yPos": 46.8
+    // },
+    // {
+    //     "name": "",
+    //     "description": "",
+    //     "related_images" : [],
+    //     "icon": "./icons/debug.png",
+    //     "positioning": "poitioned_on_top",
+    //     "xPos": 213.4,
+    //     "yPos": 541.8
     // },
     // satellites
     {
@@ -392,6 +401,70 @@ const points = [
         "xPos": 209.2,
         "yPos": 535.2
     },
+    {
+        "name": "Cacti",
+        "description": "Dug up between the sign pole and the boulder",
+        "related_images" : ['./images/cacti_1.png'],
+        "icon": "./icons/cacti.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 149.2,
+        "yPos": -10.5
+    },
+    {
+        "name": "Box of Drives",
+        "description": "A box containing 8 drives with level 3 signals can be dug up near the pole in the middle of the grassy circle. You can send the drives off for some points or you can keep them, but make sure to check them out on your console at some point :)",
+        "related_images" : ['./images/box_of_drives_1.png'],
+        "icon": "./icons/drive_box.png",
+        "positioning": "poitioned_on_top",
+        "xPos": -118.8,
+        "yPos": -42.1
+    },
+    {
+        "name": "Drive",
+        "description": "Can be dug up in the corner between the building and the driveway",
+        "related_images" : ['./images/drive_1.png'],
+        "icon": "./icons/level_0_drive.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 10.7,
+        "yPos": 9.7
+    },
+    {
+        "name": "Box of bones",
+        "description": "Can be dug up next to the boulder in the middle of the grassy circle. An old wooden box containing a 9 bones and a skull. The box is breakable",
+        "related_images" : ['./images/box_of_bones_1.png'],
+        "icon": "./icons/old_wooden_box.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 262,
+        "yPos": -6.5
+    },
+    {
+        "name": "Radioactive Capsule",
+        "description": "Located in the middle of a dirt patch with a skeleton reaching out placed next to it. Needs a shovel to get it out of the ground",
+        "related_images" : ['./images/radioactive_object_1.png', './images/radioactive_object_2.png', './images/radioactive_object_3.png'],
+        "icon": "./icons/radioactive_canister.png",
+        "positioning": "poitioned_on_top",
+        "xPos": -569.5,
+        "yPos": 303.3
+    },
+    {
+        "name": "EMF Detector",
+        "description": "Toggle on with right click while holding. 4 lights on it indicate how strong the emf is. Example locations for strong EMF is the basement in the base and stonehenge.",
+        "related_images" : ['./images/emf_detector_1.png'],
+        "icon": "./icons/emf_detector.png",
+        "positioning": "poitioned_on_top",
+        "xPos": -622.1,
+        "yPos": -31.4
+    },
+    // Points of interest
+    {
+        "name": "Basalt Pillars",
+        "description": "<div style=\"color: red;\">WARNING: THIS CAN RUIN YOUR SAVE</div><br>Can be found with the metal detector. Once dug up, it'll slowly grow out of the ground and start spreading. <u>The pillars have high durability, but they can be destroyed with a crowbar or shovel.</u>",
+        "related_images" : ['./images/basalt_pillars_1.png', './images/basalt_pillars_2.png'],
+        "icon": "./icons/basalt_pillar.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 465.5,
+        "yPos": -86.1
+    },
     // Chicken Burgers
     // {
     //     "name": "Burger",
@@ -585,19 +658,23 @@ const points = [
 ]
 const lines = [
     {
-        "color": "#058ED9",
+        "color": "black",
+        "linethickness": 2,
         "coordinates": [[-690, -700], [700, -700], [700, -215]]
     },
     {
-        "color": "#058ED9",
+        "color": "black",
+        "linethickness": 2,
         "coordinates": [[700, -200], [700, 700], [-700, 700], [-700, -70]]
     },
     {
-        "color": "#058ED9",
+        "color": "black",
+        "linethickness": 2,
         "coordinates": [[-700, -85], [-700, -700]]
     },
     {
-        "color": "#29B1FA",
+        "color": "black",
+        "linethickness": 1,
         "coordinates": [[224, 476.5], [229.9, 478], [235.5, 480.5], [241.2, 482.3], [251, 489.5], [254.9, 494.3], [261.6, 504.4], [266.8, 515.4], [270, 526.9], [276, 526.9], [284.5, 535.7], [279.3, 546.4], [277.7, 552.5], [279.6, 558.2], [279.2, 564.2], [280.4, 570.2], [278.7, 576], [274, 580], [262.3, 582.5], [258, 586.8], [250.9, 596.7], [246.2, 600.6], [238.1, 609.7], [234.7, 615], [229, 617.2], [223, 617.6], [211.7, 613.5], [205.8, 612.6], [194.5, 608], [188.5, 608.3], [188, 602.4], [183.3, 598.5], [172.6, 593.4], [169.2, 588.6], [164.6, 584.7], [159.5, 581.8], [152.1, 572.6], [149, 561], [146.8, 555.4], [143.8, 550.4], [142.1, 544.6], [142.1, 538.8], [143.7, 526.8], [145.1, 521], [147.1, 515.6], [153.5, 505.4], [157.9, 501.2], [159.8, 495.6], [163.7, 491], [168.5, 487.5], [172.7, 482.9], [178.5, 483.7], [183.8, 486.4], [189.8, 485.7], [201, 481], [206.3, 478], [218, 476], [224, 476.5]]
     }
 ]
@@ -654,7 +731,7 @@ lines.forEach((data, lineindex) => {
         } else {
             ctx.lineTo(((coords[0]+745)/1490)*currentSize, ((coords[1]+745)/1490)*currentSize);
         }
-        ctx.lineWidth = 2;
+        ctx.lineWidth = data['linethickness'];
         ctx.strokeStyle = data['color'];
         ctx.lineCap = "square";
         ctx.lineJoin = "miter";
