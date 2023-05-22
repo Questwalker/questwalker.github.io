@@ -47,14 +47,20 @@ body {
 
 #map_image {
     pointer-events: none;
+    z-index: 1;
+}
+
+#map_canvas {
+    position: absolute;
+    z-index: 2;
 }
 
 .image_label {
     cursor: pointer;
     position: absolute;
-    z-index: 999;
     max-width: 2em;
     max-height: 2em;
+    z-index: 3;
 }
 
 .positioned_above {

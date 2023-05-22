@@ -382,6 +382,16 @@ const points = [
         "xPos": -652.7,
         "yPos": -598.8
     },
+    // Items of interest
+    {
+        "name": "Shovel",
+        "description": "Found leaning on 3 supply boxes next to stonehenge",
+        "related_images" : ['./images/shovel_1.png'],
+        "icon": "./icons/shovel.png",
+        "positioning": "poitioned_on_top",
+        "xPos": 209.2,
+        "yPos": 535.2
+    },
     // Chicken Burgers
     // {
     //     "name": "Burger",
@@ -573,6 +583,24 @@ const points = [
     //     "yPos": -584
     // },
 ]
+const lines = [
+    {
+        "color": "#058ED9",
+        "coordinates": [[-690, -700], [700, -700], [700, -215]]
+    },
+    {
+        "color": "#058ED9",
+        "coordinates": [[700, -200], [700, 700], [-700, 700], [-700, -70]]
+    },
+    {
+        "color": "#058ED9",
+        "coordinates": [[-700, -85], [-700, -700]]
+    },
+    {
+        "color": "#29B1FA",
+        "coordinates": [[224, 476.5], [229.9, 478], [235.5, 480.5], [241.2, 482.3], [251, 489.5], [254.9, 494.3], [261.6, 504.4], [266.8, 515.4], [270, 526.9], [276, 526.9], [284.5, 535.7], [279.3, 546.4], [277.7, 552.5], [279.6, 558.2], [279.2, 564.2], [280.4, 570.2], [278.7, 576], [274, 580], [262.3, 582.5], [258, 586.8], [250.9, 596.7], [246.2, 600.6], [238.1, 609.7], [234.7, 615], [229, 617.2], [223, 617.6], [211.7, 613.5], [205.8, 612.6], [194.5, 608], [188.5, 608.3], [188, 602.4], [183.3, 598.5], [172.6, 593.4], [169.2, 588.6], [164.6, 584.7], [159.5, 581.8], [152.1, 572.6], [149, 561], [146.8, 555.4], [143.8, 550.4], [142.1, 544.6], [142.1, 538.8], [143.7, 526.8], [145.1, 521], [147.1, 515.6], [153.5, 505.4], [157.9, 501.2], [159.8, 495.6], [163.7, 491], [168.5, 487.5], [172.7, 482.9], [178.5, 483.7], [183.8, 486.4], [189.8, 485.7], [201, 481], [206.3, 478], [218, 476], [224, 476.5]]
+    }
+]
 var map_container = document.getElementById('map_container');
 var information_pane = document.getElementById('information_pane');
 var information_header = document.getElementById('information_header');
@@ -581,15 +609,15 @@ var information_text = document.getElementById('information_text');
 var information_images = document.getElementById('information_images');
 var map_pane = document.getElementById('map_pane')
 var map_image = document.getElementById('map_image')
+var map_canvas = document.getElementById('map_canvas')
+var ctx = map_canvas.getContext('2d');
 var display_image = document.getElementById('display_image')
 var display_image_container = document.getElementById('display_image_container')
-
 function centerMap() {
     map_container.style.left = Math.floor((map_pane.offsetWidth - map_image.offsetWidth) / 2).toString() + 'px'
     map_container.style.top = Math.floor((map_pane.offsetHeight - map_image.offsetHeight) / 2).toString() + 'px'
 };
 
-var touchedPoint = false;
 var currentSize = 896;
 var clickedWithoutMovement = false;
 var drag = {
@@ -599,10 +627,12 @@ var drag = {
 };
 
 // ensure that the map centers in the map_pane when the page is loaded
+
 window.addEventListener('load', centerMap, false);
 
 
 // creating the points on the map
+
 points.forEach((data, pointindex) => {
     let element = document.createElement('img');
     element.classList.add('image_label')
@@ -615,9 +645,28 @@ points.forEach((data, pointindex) => {
     map_container.appendChild(element)
 })
 
+lines.forEach((data, lineindex) => {
+    ctx.beginPath();
+    data['coordinates'].forEach((coords, index) => {
+        if (index == 0) {
+            ctx.moveTo(((coords[0]+745)/1490)*currentSize, ((coords[1]+745)/1490)*currentSize);
+        } else {
+            ctx.lineTo(((coords[0]+745)/1490)*currentSize, ((coords[1]+745)/1490)*currentSize);
+        }
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = data['color'];
+        ctx.lineCap = "square";
+        ctx.lineJoin = "miter";
+        ctx.stroke();
+    })
+})
+
+
+// map panning functionality
+
 map_container.addEventListener('mousedown', function(event) {
     clickedWithoutMovement = true
-    if (event.target == map_container) {
+    if (event.target == map_canvas) {
         if (!drag.state && event.button == 0) {
             map_container.classList.add('unselectable')
             drag.x = event.pageX
@@ -628,7 +677,7 @@ map_container.addEventListener('mousedown', function(event) {
 });
 map_container.addEventListener('touchstart', function(event) {
     clickedWithoutMovement = true
-    if (event.target == map_container) {
+    if (event.target == map_canvas) {
         if (!drag.state && event.touches.length == 1) {
             map_container.classList.add('unselectable')
             drag.x = event.touches[0].pageX
@@ -667,7 +716,6 @@ document.addEventListener('touchmove', function(event) {
 document.addEventListener('mouseup', function(event) {
     if (drag.state) {
         drag.state = false;
-        touchedPoint = false;
         if (clickedWithoutMovement) {
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
@@ -699,7 +747,6 @@ document.addEventListener('mouseup', function(event) {
 document.addEventListener('touchend', function(e) {
     if (drag.state) {
         drag.state = false;
-        touchedPoint = false;
         if (clickedWithoutMovement) {
             information_header.innerHTML = 'Select a Point'
             information_coords.innerHTML = ''
@@ -745,6 +792,3 @@ document.addEventListener('keydown', (event) => {
         }
     }
 });
-
-
-
