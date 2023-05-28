@@ -174,8 +174,7 @@ function hidePointCommand(element) {
 }
 
 function hidePoint(id, pointindex, force=undefined) {
-    // let point = document.querySelector(`.image_label[data-pointindex='${element.dataset.pointindex}']`) // this uses less memory but has a minor preformance/speed impact
-    let point = references[id][pointindex]['point'] // this is faster, but uses slightly more memory
+    let point = references[id][pointindex]['point']
     let button = references[id][pointindex]['entry'].querySelector('[data-pointindex]')
     if ((point.classList.contains('hidden') || force == 'show') && (force != 'hide')) {
         // unhide point
