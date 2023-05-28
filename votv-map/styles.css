@@ -22,15 +22,14 @@ body {
 
 #map_pane {
     border: 1px solid green;
-    flex: 0.8;
+    flex: 0.785;
 }
 
 #information_pane {
     border-top: 1px solid #008000;
     border-right: 1px solid green;
     border-bottom: 1px solid green;
-    flex: 0.2;
-    padding: 12px;
+    flex: 0.215;
 }
 
 .flex_box .col {
@@ -87,6 +86,32 @@ body {
     flex-flow: column;
 }
 
+#information_pane_content {
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    min-height: calc(100% - 48px);
+}
+
+/* #information_pane_info {
+    padding-top: 12px;
+} */
+
+.information_tab {
+    border-right: 1px solid green;
+    border-left: 1px solid green;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.tab_selected {
+    background-color: rgba(0, 128, 0, 0.25);
+}
+
 #information_pane_body {
     flex: 1;
     overflow: auto;
@@ -140,6 +165,55 @@ body {
     text-decoration-color: green;
 }
 
+#information_tabs {
+    display: flex;
+    flex-flow: row;
+    border-bottom: 1px solid green;
+    height: 24px;
+}
+
+
+
+
+
+.pointlist_category {
+    display: flex;
+    border: 1px solid green;
+    padding: 12px;
+    white-space: nowrap;
+    margin-top: 12px;
+}
+
+.pointlist_entry {
+    display: flex;
+    border-right: 1px solid green;
+    border-bottom: 1px solid green;
+    border-left: 1px solid green;
+    margin-left: 8px;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+.pointlistentry_name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.pointercursor {
+    cursor: pointer;
+}
+
+.gray {
+    color: rgb(150, 150, 150);
+}
+
+#information_pane_points {
+    margin-bottom: 6px;
+}
+
 @media (max-width: 850px) {
     #page_container {
         flex-flow: column;
@@ -148,12 +222,12 @@ body {
         display: none;
     }
     #map_pane {
-        flex: 0.7;
+        flex: 0.65;
     }
     #information_pane {
         border-top: 0;
         border-left: 1px solid green;
-        flex: 0.3;
+        flex: 0.35;
     }
     #information_images {
         display: flex;
