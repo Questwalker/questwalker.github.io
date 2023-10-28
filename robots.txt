@@ -1,0 +1,15 @@
+user-agent: *
+allow: /
+allow: /minecraft-dungeons-arcade-cards/
+
+allow: /votv-map/
+disallow: /votv-map/icons/
+disallow: /votv-map/images/
+disallow: /votv-map/old-assets/
+disallow: /votv-map/*.txt
+disallow: /votv-map/*.png
+
+allow: /hexcanvas/
+
+
+#sitemap: https://questwalker.github.io/sitemap.xml
