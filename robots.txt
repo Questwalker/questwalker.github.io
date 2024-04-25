@@ -7,6 +7,7 @@ allow: /votv-map/
 disallow: /votv-map/icons/
 disallow: /votv-map/images/
 disallow: /votv-map/old-assets/
+disallow: /votv-map/changelog
 disallow: /votv-map/*.txt
 disallow: /votv-map/*.png
 allow: /HexCanvas/
