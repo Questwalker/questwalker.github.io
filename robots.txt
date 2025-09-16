@@ -1,13 +1,6 @@
 user-agent: *
 allow: /
 allow: /minecraft-dungeons-arcade-cards/
-disallow: /minecraft-dungeons-arcade-cards/*.txt
-disallow: /minecraft-dungeons-arcade-cards/*.ttf
 allow: /votv-map/
-disallow: /votv-map/icons/
-disallow: /votv-map/images/
-disallow: /votv-map/old-assets/
-disallow: /votv-map/changelog
-disallow: /votv-map/*.txt
-disallow: /votv-map/*.png
-allow: /HexCanvas/
+allow: /votv-map/changelog/
+allow: /votv-modding-wiki/
